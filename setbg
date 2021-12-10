@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+echo "Choosing random wallpaper..."
+wall=$(find $HOME/Downloads/wallpaper -type f | shuf -n 1)
+echo "Setting wallpaper..."
+nitrogen --set-scaled $wall
+echo "Generating pywal color schemes..."
+wal -i $wall >/dev/null
+echo "Recompiling dwm and dmenu..."
+(cd $HOME/.local/src/dwm && sudo make clean install>/dev/null)
+(cd $HOME/.local/src/dmenu && sudo make clean install>/dev/null)
+echo "restart dwm for new look"
+
